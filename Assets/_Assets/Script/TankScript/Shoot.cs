@@ -12,6 +12,7 @@ public class Shoot : MonoBehaviour
     [SerializeField] private float _fireRate;
     [SerializeField] private float _laserDuration;
     [SerializeField] private GameObject _effect;
+    [SerializeField] private AudioSource _fireSound;
     private float _nextFire;
 
     // Start is called before the first frame update
@@ -34,6 +35,7 @@ public class Shoot : MonoBehaviour
         {
             _nextFire = Time.time + _fireRate;
             StartCoroutine(ShootLaser());
+            _fireSound.Play();
         }
     }
     

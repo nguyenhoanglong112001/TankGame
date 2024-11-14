@@ -1,16 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] private GameObject _bullet;
     [SerializeField] private Transform _shootPos;
     [SerializeField] private float _speed;
     [SerializeField] private LineRenderer _laser;
     [SerializeField] private int _damage;
     [SerializeField] private LayerMask _layerHit;
+    [SerializeField] private AudioSource _fireSound;
     private GameObject bullet;
     // Start is called before the first frame update
     void Start()
@@ -31,6 +30,7 @@ public class EnemyAttack : MonoBehaviour
         _laser.SetPosition(0, _shootPos.position);
 
         RaycastHit hitinfo;
+        _fireSound.Play();
         if (Physics.Raycast(_shootPos.position, _shootPos.forward, out hitinfo, _layerHit))
         {
             _laser.SetPosition(1, hitinfo.point);
